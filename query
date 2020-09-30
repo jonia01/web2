@@ -1,0 +1,26 @@
+USE [SRO_VT_ACCOUNT]
+GO
+
+/****** Object:  Table [dbo].[_ShardCurrentUser]    Script Date: 9/30/2020 8:08:11 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[_ShardCurrentUser](
+	[nID] [int] IDENTITY(1,1) NOT NULL,
+	[nShardID] [int] NOT NULL,
+	[nUserCount] [int] NOT NULL,
+	[dLogDate] [smalldatetime] NOT NULL,
+ CONSTRAINT [PK___ShardCurrentUse__20C1E124] PRIMARY KEY NONCLUSTERED 
+(
+	[nID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[_ShardCurrentUser] ADD  CONSTRAINT [DF___ShardCur__dLogD__2CF2ADDF]  DEFAULT (getdate()) FOR [dLogDate]
+GO
+
+
